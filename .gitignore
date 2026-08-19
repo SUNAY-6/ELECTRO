@@ -1,0 +1,11 @@
+node_modules
+dist
+.DS_Store
+server/data/db.json
+server/data/db.json.tmp
+server/uploads/*
+!server/uploads/.gitkeep
+.env
+*.log
+.arena
+.cache

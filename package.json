@@ -1,0 +1,14 @@
+{
+  "name": "ece-lab-portfolio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "ECE / EEE animated portfolio — static-first, GitHub Pages ready",
+  "scripts": {
+    "postinstall": "npm install --prefix client --no-fund --no-audit",
+    "dev": "npm run dev --prefix client",
+    "dev:full": "npx --yes concurrently -n api,web -c green,cyan \"npm run start --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix client",
+    "preview": "npm run preview --prefix client -- --host 0.0.0.0 --port 4173",
+    "server": "npm run start --prefix server"
+  }
+}

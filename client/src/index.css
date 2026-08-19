@@ -1,0 +1,470 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #05070a;
+  --bg-2: #080c12;
+  --panel: #101820ee;
+  --panel-solid: #101820;
+  --line: #1c2836;
+  --text: #e8eef5;
+  --mute: #8b9bb4;
+  --cyan: #00e5ff;
+  --cyan-2: #67f0ff;
+  --pcb: #22c55e;
+  --violet: #8b5cf6;
+  --amber: #ff9100;
+  --danger: #ff4d6d;
+  --grid: rgba(0, 229, 255, 0.045);
+  --glow: rgba(0, 229, 255, 0.28);
+}
+
+[data-theme="light"] {
+  --bg: #eef3f8;
+  --bg-2: #e4ebf3;
+  --panel: #ffffffee;
+  --panel-solid: #ffffff;
+  --line: #c9d5e3;
+  --text: #0c1520;
+  --mute: #4a5d73;
+  --cyan: #007f92;
+  --cyan-2: #0496ad;
+  --pcb: #0d8a42;
+  --violet: #5b37c7;
+  --amber: #c05600;
+  --danger: #c81e45;
+  --grid: rgba(12, 40, 70, 0.05);
+  --glow: rgba(0, 127, 146, 0.18);
+}
+
+@theme inline {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Rajdhani", "Inter", sans-serif;
+  --font-mono: "Share Tech Mono", ui-monospace, monospace;
+  --color-void: var(--bg);
+  --color-ink: var(--bg-2);
+  --color-panel: var(--panel-solid);
+  --color-line: var(--line);
+  --color-ice: var(--text);
+  --color-mute: var(--mute);
+  --color-cyan: var(--cyan);
+  --color-pcb: var(--pcb);
+  --color-violet: var(--violet);
+  --color-amber: var(--amber);
+  --color-danger: var(--danger);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--cyan) 35%, transparent);
+  color: var(--text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+.lab-grid {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, 0.08) 3px
+  );
+  pointer-events: none;
+}
+
+.glass {
+  background: var(--panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--line);
+}
+
+.circuit-border {
+  position: relative;
+}
+
+.circuit-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    var(--cyan) 45%,
+    var(--pcb) 55%,
+    transparent 80%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.glow-cyan {
+  box-shadow: 0 0 24px var(--glow);
+}
+
+.text-glow {
+  text-shadow: 0 0 18px var(--glow);
+}
+
+.led {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--pcb);
+  box-shadow: 0 0 10px var(--pcb);
+  animation: blink 2.4s ease-in-out infinite;
+}
+
+.led-cyan {
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+@keyframes dashflow {
+  to {
+    stroke-dashoffset: -240;
+  }
+}
+
+@keyframes pulse-node {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25);
+  }
+}
+
+@keyframes boot-scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes float-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(6px, -10px, 0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -140% 0;
+  }
+  100% {
+    background-position: 140% 0;
+  }
+}
+
+@keyframes scan-sweep {
+  0% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(220%);
+    opacity: 0;
+  }
+}
+
+@keyframes radar {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.55;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+@keyframes caret {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitch {
+  0%,
+  88%,
+  100% {
+    clip-path: inset(0 0 0 0);
+    transform: translate(0);
+  }
+  90% {
+    clip-path: inset(18% 0 42% 0);
+    transform: translate(-2px, 1px);
+  }
+  93% {
+    clip-path: inset(60% 0 8% 0);
+    transform: translate(2px, -1px);
+  }
+}
+
+@keyframes hop {
+  0% {
+    offset-distance: 0%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    offset-distance: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes voltage {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  40% {
+    opacity: 1;
+  }
+  62% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes border-run {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+@keyframes data-stream {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.scan-sweep {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.scan-sweep::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 28%;
+  background: linear-gradient(to bottom, transparent, color-mix(in srgb, var(--cyan) 22%, transparent), transparent);
+  animation: scan-sweep 5.8s ease-in-out infinite;
+}
+
+.float-y {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+.float-drift {
+  animation: float-drift 7s ease-in-out infinite;
+}
+
+.shimmer {
+  background-image: linear-gradient(
+    110deg,
+    transparent 20%,
+    color-mix(in srgb, var(--cyan) 35%, transparent) 50%,
+    transparent 80%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3.2s linear infinite;
+}
+
+.caret {
+  display: inline-block;
+  width: 0.55ch;
+  height: 0.85em;
+  margin-left: 2px;
+  background: var(--cyan);
+  box-shadow: 0 0 10px var(--cyan);
+  animation: caret 1s steps(1) infinite;
+  vertical-align: -0.08em;
+}
+
+.glitch-soft {
+  animation: glitch 6s steps(2) infinite;
+}
+
+.live-voltage {
+  animation: voltage 1.8s ease-in-out infinite;
+}
+
+.signal-orbit {
+  animation: radar 2.8s ease-out infinite;
+}
+
+.circuit-run {
+  background: linear-gradient(90deg, transparent, var(--cyan), var(--pcb), transparent);
+  background-size: 200% 100%;
+  animation: border-run 2.4s linear infinite;
+}
+
+.data-tape {
+  display: flex;
+  width: max-content;
+  animation: data-stream 22s linear infinite;
+}
+
+.tilt-card {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan-sweep::after,
+  .float-y,
+  .float-drift,
+  .shimmer,
+  .caret,
+  .glitch-soft,
+  .live-voltage,
+  .signal-orbit,
+  .circuit-run,
+  .data-tape {
+    animation: none !important;
+  }
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--cyan) 35%, var(--line));
+  border-radius: 99px;
+}
+
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+.tech-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--mute);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .led {
+    animation: none;
+  }
+}
+
+@media (pointer: coarse) {
+  .cursor-none,
+  .cursor-none * {
+    cursor: auto !important;
+  }
+}

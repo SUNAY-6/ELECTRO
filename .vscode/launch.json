@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Portfolio (client only)",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "name": "API + Portfolio",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "npm run dev:full",
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

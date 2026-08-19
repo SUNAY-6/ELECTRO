@@ -1,0 +1,19 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Install all",
+      "type": "shell",
+      "command": "npm install && npm install --prefix client && npm install --prefix server",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Dev: client",
+      "type": "shell",
+      "command": "npm run dev",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
