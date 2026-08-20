@@ -41,7 +41,7 @@ export default function Navbar() {
       >
         <button type="button" onClick={() => go('home')} className="flex items-center gap-3">
           <span className="grid size-8 place-items-center border border-cyan/40 font-display text-sm text-cyan">
-            SUNAY
+            S
           </span>
           <span className="hidden text-left sm:block">
             <span className="block font-display text-sm tracking-[0.16em] uppercase">{profile?.name || 'ECE LAB'}</span>
