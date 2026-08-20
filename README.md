@@ -1,4 +1,4 @@
-# ECE Lab Portfolio
+# ELECTRONIC Lab Portfolio
 
 Animated ECE / EEE portfolio. **Runs without a backend** (localStorage CMS), so it deploys to **GitHub Pages**. An optional Express API is included if you later want a real server.
 
